@@ -1,7 +1,7 @@
 # cbmedigo
 Medigo theme for ContentBox 3.x.
 
-#Original Design
+# Original Design
 https://templatemo.com/tm-460-medigo
 
 
