@@ -22,14 +22,14 @@
 					
 				<!--- Are we filtering by category? --->
 				<cfif len( rc.category )>
-					<p class="infoBar h2 mb-3"><strong>Category Filtering: '#rc.category#'</strong></p>
+					<p class="infoBar h2 mb-3"><strong>Category Filtering: ''#encodeForHTML( rc.category )#'</strong></p>
 					<p class="buttonBar"><a href="#cb.linkBlog()#" class="mainBtn" title="Remove filter and view all entries">Remove Filter</a></p>
 					<br/>
 				</cfif>
 		
 				<!--- Are we searching --->
 				<cfif len( rc.q )>
-					<p class="infoBar h2 mb-3"><strong>Searching by: '#rc.q#'</strong></p>
+					<p class="infoBar h2 mb-3"><strong>Searching by: '#encodeForHTML( rc.q )#'</strong></p>
 					<p class="buttonBar"><a href="#cb.linkBlog()#" class="mainBtn" title="Clear search and view all entries">Clear Search</a></p>
 					<br/>
 				</cfif>

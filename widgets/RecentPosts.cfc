@@ -44,23 +44,35 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 		var cbSettings 		= event.getValue( name="cbSettings", private=true );
 		
 		// Determine Sort Order
-		switch( arguments.sortOrder ){
-			case "Most Popular" 	: { arguments.sortOrder = "hits DESC";break; }
-			case "Most Commented" 	: { arguments.sortOrder = "numberOfComments DESC";break;}
-			default : { arguments.sortOrder = "publishedDate DESC"; }
+		// Determine Sort Order
+		switch ( arguments.sortOrder ) {
+			case "Most Popular": {
+				arguments.sortOrder = "hits DESC";
+				break;
+			}
+			case "Most Commented": {
+				arguments.sortOrder = "numberOfComments DESC";
+				break;
+			}
+			default: {
+				arguments.sortOrder = "publishedDate DESC";
+			}
 		}
 
-		var entryResults 	= entryService.findPublishedEntries( max=arguments.max,
-											   					 category=arguments.category,
-											   				 	 searchTerm=arguments.searchTerm,
-											   				 	 sortOrder=arguments.sortOrder );
+		var entryResults = variables.entryService.findPublishedContent(
+			max       : arguments.max,
+			category  : arguments.category,
+			searchTerm: arguments.searchTerm,
+			sortOrder : arguments.sortOrder,
+			siteID    : getSite().getsiteID()
+		);
+
 		var rString			= "";
 
 		// iteration cap
 		if( entryResults.count lt arguments.max){
 			arguments.max = entryResults.count;
 		}
-
 		// generate recent comments
 		saveContent variable="rString"{
 			// title
@@ -69,12 +81,12 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 			// iterate and create
 			for(var x=1; x lte arguments.max; x++){
 				writeOutput('<div class="last-post media">');
-				if(entryResults.entries[ x ].getfeaturedImageURL() NEQ ""){
-					writeOutput('<a href="#cb.linkEntry(entryResults.entries[ x ])#" class="blog-imgOuter"> <img class="img-fluid" src="#entryResults.entries[ x ].getFeaturedImageURL()#" alt="#entryResults.entries[ x ].getTitle()#"></a>');
+				if(entryResults.content[ x ].getfeaturedImageURL() NEQ ""){
+					writeOutput('<a href="#cb.linkEntry(entryResults.content[ x ])#" class="blog-imgOuter"> <img class="img-fluid" src="#entryResults.content[ x ].getFeaturedImageURL()#" alt="#entryResults.content[ x ].getTitle()#"></a>');
 				}
 				writeOutput('<div class="content media-body">');
-				writeOutput('<span>#dateFormat(entryResults.entries[ x ].getDisplayPublishedDate(),'dd mmmm yyyy' )#</span>');
-				writeOutput('<h4><a href="#cb.linkEntry(entryResults.entries[ x ])#">#entryResults.entries[ x ].getTitle()#</a></h4>');
+				writeOutput('<span>#dateFormat(entryResults.content[ x ].getDisplayPublishedDate(),'dd mmmm yyyy' )#</span>');
+				writeOutput('<h4><a href="#cb.linkEntry(entryResults.content[ x ])#">#entryResults.content[ x ].getTitle()#</a></h4>');
 				writeOutput('</div></div>');
 			}
 		}
@@ -86,7 +98,7 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 	* Get all the categories
 	*/
 	array function getAllCategories() cbIgnore{
-		return categoryService.getAllNames();
+		return variables.categoryService.getAllNames();
 	}
 
 }

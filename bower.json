@@ -1,6 +1,6 @@
 {
-  "name": "cb3default",
-  "version": "1.0.0",
+  "name": "cbmedigo",
+  "version": "2.0.0",
   "license": "Apache2",
   "ignore": [
     "**/.*",
@@ -10,7 +10,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3",
+    "bootstrap": "v4.5.0",
     "components-font-awesome": "~4.4.0"
   }
 }

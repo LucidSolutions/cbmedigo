@@ -10,7 +10,7 @@
 		    <div class="container home-intro-content">
 		        <div class="row">
 		        	<div class="col-md-12">
-		        		#prc.page.getExcerpt()#
+		        		#prc.page.renderExcerpt()#
 		        	</div>
 		        </div>
 		    </div>

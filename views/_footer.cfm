@@ -17,7 +17,7 @@
                         </cfloop>
 
                         <!--- Blog Link, verify active --->
-                        <cfif ( !prc.cbSettings.cb_site_disable_blog )>
+                        <cfif (!structKeyExists(prc.cbSettings, "cb_site_disable_blog"))>
                             <cfif cb.isBlogView()><li><cfelse><li></cfif>
                                 <a href="#cb.linkBlog()#">Blog</a>
                             </li>
@@ -28,7 +28,8 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<p class="copyright-text">Copyright &copy; #YEAR(NOW())# #cb.siteName()#.</p>
+				<p class="copyright-text">Theme Developed By <a href="https://lucidoutsourcing.com/">Lucid Outsourcing Solutions Pvt. Ltd.</a></p>
+                <div>#cb.themeSetting( 'footerBox' )#</div>
 			</div>
 		</div>
 	</div>

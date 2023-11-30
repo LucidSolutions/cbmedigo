@@ -7,7 +7,7 @@
 	</cfif>
 		<div class="post-blog" id="post_#entry.getContentID()#">
 			<cfif entry.getFeaturedImageURL() NEQ "">
-				<div class="blog-image"><img class="img-fluid" src="#entry.getFeaturedImageURL()#" alt="#entry.getTitle()#"></div>
+				<div class="blog-image"><a href="#cb.linkEntry(entry)#" title="#entry.getTitle()#"><img class="img-fluid" src="#entry.getFeaturedImageURL()#" alt="#entry.getTitle()#"></a></div>
 			</cfif>
 
 			<div class="blog-content">
